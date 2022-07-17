@@ -1,11 +1,17 @@
 package com.furnitureStore.entity;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
+@Entity
 public class Furniture {
+    @Id
     private long furnitureId;
     private String furnitureName;
     private String furnitureColor;
     private String furnitureModel;
     private double price;
+
 
     public Furniture() {
     }
@@ -56,6 +62,30 @@ public class Furniture {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Furniture{" +
+                "furnitureId=" + furnitureId +
+                ", furnitureName='" + furnitureName + '\'' +
+                ", furnitureColor='" + furnitureColor + '\'' +
+                ", furnitureModel='" + furnitureModel + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Furniture furniture = (Furniture) o;
+        return furnitureId == furniture.furnitureId && Double.compare(furniture.price, price) == 0 && Objects.equals(furnitureName, furniture.furnitureName) && Objects.equals(furnitureColor, furniture.furnitureColor) && Objects.equals(furnitureModel, furniture.furnitureModel);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(furnitureId, furnitureName, furnitureColor, furnitureModel, price);
     }
 }
 
